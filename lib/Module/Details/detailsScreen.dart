@@ -3,6 +3,7 @@ import 'package:drinhome/Widgets/Style/style.dart';
 import 'package:drinhome/Widgets/buttonCustom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DetailsScreen extends StatelessWidget {
   TModel item;
@@ -18,7 +19,9 @@ class DetailsScreen extends StatelessWidget {
               Get.back();
             }),
         actions: [
-          buttonAppBar(text: "مشاركة", function: () {}),
+          buttonAppBar(text: "مشاركة", function: () {
+            Share.share(item.title.toString(), subject: item.usedForDiseases.toString());
+          }),
         ],
       ),
       body: SafeArea(
@@ -75,6 +78,9 @@ class DetailsScreen extends StatelessWidget {
           textButton(
             text: 'مشاركة على فسبوك',
             color: Colors.indigo,
+            function: (){
+
+            }
           ),
           const SizedBox(
             width: 10,
@@ -82,12 +88,18 @@ class DetailsScreen extends StatelessWidget {
           textButton(
             text: 'مشاركة على تويتر',
             color: Colors.blue,
+            function: (){
+              Share.share(item.title.toString(), subject: item.usedForDiseases.toString());
+
+            },
           ),
           const SizedBox(
             width: 10,
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Share.share(item.title.toString(), subject: item.usedForDiseases.toString());
+            },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.grey),
             ),
