@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "310981487330",
+    "project_id": "dr-in-home",
+    "storage_bucket": "dr-in-home.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310981487330:android:20c040941f64db43fd8cbb",
+        "android_client_info": {
+          "package_name": "com.DrInHome.drinhome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "310981487330-mq2qhfe75opji5tofk7991n2brja5erg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZ-p75P6rt6JjVksgzNPoWGk5Rxg7lcIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "310981487330-mq2qhfe75opji5tofk7991n2brja5erg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
