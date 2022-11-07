@@ -37,15 +37,17 @@ class BarCodeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               visibleItems(
-                Text(
-                  controller.scanBarcodeString,
-                  style: const TextStyle(fontSize: 18, color: Colors.blue),
-                ),
+                IconButton(
+                    onPressed: () {
+                      Get.to(DetailsScreen(item: controller.item));
+                    },
+                    icon: const Text("Go to Details")),
               ),
               visibleItems(
-                IconButton(onPressed: () {
-                  Get.to(DetailsScreen(item: controller.item));
-                }, icon: const Icon(Icons.arrow_back)),
+                Text(
+                  controller.scanBarcodeString,
+                  style:  Style.textStyle(fontSize: 18, color: Colors.blue),
+                ),
               ),
             ],
           ),

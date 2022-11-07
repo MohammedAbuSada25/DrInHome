@@ -19,9 +19,12 @@ class DetailsScreen extends StatelessWidget {
               Get.back();
             }),
         actions: [
-          buttonAppBar(text: "مشاركة", function: () {
-            Share.share(item.title.toString(), subject: item.usedForDiseases.toString());
-          }),
+          buttonAppBar(
+              text: "مشاركة",
+              function: () {
+                Share.share(item.title.toString(),
+                    subject: item.usedForDiseases.toString());
+              }),
         ],
       ),
       body: SafeArea(
@@ -37,11 +40,7 @@ class DetailsScreen extends StatelessWidget {
                   textAlign: TextAlign.start,
                 ),
                 const SizedBox(height: 20),
-                Image.network(
-                  item.image.toString(),
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
+                imageNetwork(),
                 const SizedBox(height: 10),
                 Text(
                   "Used For Diseases: ${item.usedForDiseases.toString()}",
@@ -72,25 +71,38 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 
+  imageNetwork() => Image.network(
+        item.image.toString(),
+        width: double.infinity,
+        fit: BoxFit.cover,
+        loadingBuilder: (BuildContext context, Widget child,
+            ImageChunkEvent? loadingProgress) {
+          if (loadingProgress == null) return child;
+          return Center(
+            child: CircularProgressIndicator(
+              value: loadingProgress.expectedTotalBytes != null
+                  ? loadingProgress.cumulativeBytesLoaded /
+                      loadingProgress.expectedTotalBytes!
+                  : null,
+            ),
+          );
+        },
+
+      );
   buttonShare() => Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           textButton(
-            text: 'مشاركة على فسبوك',
-            color: Colors.indigo,
-            function: (){
-
-            }
-          ),
+              text: 'مشاركة على فسبوك', color: Colors.indigo, function: () {}),
           const SizedBox(
             width: 10,
           ),
           textButton(
             text: 'مشاركة على تويتر',
             color: Colors.blue,
-            function: (){
-              Share.share(item.title.toString(), subject: item.usedForDiseases.toString());
-
+            function: () {
+              Share.share(item.title.toString(),
+                  subject: item.usedForDiseases.toString());
             },
           ),
           const SizedBox(
@@ -98,7 +110,8 @@ class DetailsScreen extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              Share.share(item.title.toString(), subject: item.usedForDiseases.toString());
+              Share.share(item.title.toString(),
+                  subject: item.usedForDiseases.toString());
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.grey),
