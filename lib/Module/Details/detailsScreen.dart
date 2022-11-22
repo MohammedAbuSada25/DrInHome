@@ -1,4 +1,5 @@
 import 'package:drinhome/Model/TModel.dart';
+import 'package:drinhome/Module/Details/detailsController.dart';
 import 'package:drinhome/Widgets/Style/style.dart';
 import 'package:drinhome/Widgets/buttonCustom.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +10,17 @@ class DetailsScreen extends StatelessWidget {
   TModel item;
   DetailsScreen({required this.item, super.key});
 
+  final controller = Get.put(DetailsController());
   @override
   Widget build(BuildContext context) {
+    String title = "اسم الدواء: ${item.title.toString()}";
+    String usedForDiseases =
+        " يستخدم لأمراض: ${item.usedForDiseases.toString()}";
+    String symptomsUse =
+        "الأعراض المصاحبة عند استخدام هذا الدواء ${item.symptomsUse.toString()}";
+    String howToUse = " كيفية إستخدام هذا الدواء: ${item.use.toString()}";
+    String components = " مكونات هذا الدواء هي: ${item.components.toString()}";
+
     return Scaffold(
       appBar: AppBar(
         leading: buttonAppBar(
@@ -27,49 +37,86 @@ class DetailsScreen extends StatelessWidget {
               }),
         ],
       ),
-      body: SafeArea(
+      body: GetBuilder(
+        init: controller,
+        builder: (control) => body(
+          title: title,
+          howToUse: howToUse,
+          symptomsUse: symptomsUse,
+          usedForDiseases: usedForDiseases,
+          components: components,
+        ),
+      ),
+    );
+  }
+
+  Widget body({
+    required String title,
+    required String usedForDiseases,
+    required String howToUse,
+    required String symptomsUse,
+    required String components,
+  }) =>
+      SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Name medicine: ${item.title.toString()}",
-                  style: Style.textStyle(fontSize: 22),
-                  textAlign: TextAlign.start,
+                TextButton(
+                  onPressed: () {
+                    controller.speak(title);
+                  },
+                  child: Text(
+                    title,
+                    style: Style.textStyle(fontSize: 20),
+                    textAlign: TextAlign.start,
+                  ),
                 ),
-                const SizedBox(height: 20),
                 imageNetwork(),
-                const SizedBox(height: 10),
-                Text(
-                  "Used For Diseases: ${item.usedForDiseases.toString()}",
-                  style: Style.textStyle(fontSize: 16),
+                TextButton(
+                  onPressed: () {
+                    controller.speak(usedForDiseases);
+                  },
+                  child: Text(
+                    usedForDiseases,
+                    style: Style.textStyle(fontSize: 14),
+                  ),
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  "Symptoms of use: ${item.use.toString()}",
-                  style: Style.textStyle(fontSize: 16),
+                TextButton(
+                  onPressed: () {
+                    controller.speak(howToUse);
+                  },
+                  child: Text(
+                    howToUse,
+                    style: Style.textStyle(fontSize: 14),
+                  ),
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  "How to use: ${item.use.toString()}",
-                  style: Style.textStyle(fontSize: 16),
+                TextButton(
+                  onPressed: () {
+                    controller.speak(symptomsUse);
+                  },
+                  child: Text(
+                    symptomsUse,
+                    style: Style.textStyle(fontSize: 14, color: Colors.black),
+                  ),
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  "The components: ${item.components.toString()}",
-                  style: Style.textStyle(fontSize: 14),
+                TextButton(
+                  onPressed: () {
+                    controller.speak(components);
+                  },
+                  child: Text(
+                    components,
+                    style: Style.textStyle(fontSize: 12),
+                  ),
                 ),
-                const SizedBox(height: 20),
                 buttonShare(),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 
   imageNetwork() => Image.network(
         item.image.toString(),
@@ -87,7 +134,6 @@ class DetailsScreen extends StatelessWidget {
             ),
           );
         },
-
       );
   buttonShare() => Row(
         mainAxisAlignment: MainAxisAlignment.start,

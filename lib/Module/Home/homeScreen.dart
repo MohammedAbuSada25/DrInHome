@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
             innerBoxIsScrolled = false;
             return [ SliverAppBar(
               // toolbarHeight: 50,
-              title: const Text("Dr In Home",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
+              title: const Text("الطبيب داخل البيت",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
               centerTitle: true,
               pinned: true,
               floating: true,

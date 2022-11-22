@@ -4,7 +4,7 @@ final dummy = [
   {
     "barCode": "1",
     "title": "bla bla",
-    "use": "bla bla bla bla",
+    "use": "Hello, Good Morning!",
     "symptoms_use": "bla bla bla bla bla",
     "components": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla",
     "used_for_diseases": "bla bla bla bla ",

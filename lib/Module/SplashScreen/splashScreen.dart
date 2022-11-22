@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   child: Image.asset('assets/images/logo.png'),
                 ),
                 const Text(
-                  'Dr In Home',
+                  'الطبيب داخل البيت',
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.w900,
